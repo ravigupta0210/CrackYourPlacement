@@ -1,2 +1,2 @@
 # CrackYourPlacement
-#CrackYourInternship #CrackYourPlacement Challenge - #ReviseWithArsh
+#CrackYourPlacement Challenge - #ReviseWithArsh
