@@ -1,0 +1,130 @@
+# Valid Parentheses
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        string temp=s;
+        stack<int> st;
+        for(int i=0;i<temp.size();i++){
+            char ch= temp[i];
+            if(ch == '(' || ch == '{' || ch== '[') st.push(ch);
+            else if((ch == ')' && st.size() > 0 && st.top() == '(') || 
+            (ch == ']' && st.size() > 0 && st.top() == '[') ||
+            (ch == '}' && st.size() > 0 && st.top() == '{')) st.pop();
+            else return false;
+        }
+        if(st.size() == 0) return true;
+        else return false;
+    }
+};
+
+
+****************************************************
+# Find the Index of the First Occurrence in a String
+
+class Solution {
+public:
+    int strStr(string s2, string s1) {
+        int found= -1;
+        found = s2.find(s1);
+        return found;
+    }
+};
+
+
+***************************************************
+# Longest Common Prefix
+
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string ans=strs[0];
+        int n=strs.size();
+        for(int i=1;i<n;i++){
+            string temp="";
+            string temp2=strs[i];
+            for(int j=0;j<ans.length();j++){
+                if(temp2[j] == ans[j])
+                temp+=ans[j];
+                else break;
+            }
+            ans=temp;
+        }
+        if(ans.size() == 0) return "";
+        else return ans;
+    }
+};
+
+
+****************************************************
+# Valid Palindrome II
+
+
+class Solution {
+public:
+bool isPalindrome(int left,int right,string s){
+    while(left < right){
+        if(s[left] == s[right]) {
+            left++;
+            right--;
+        }
+        else{
+            return false;
+        }}
+        return true;
+}
+    bool validPalindrome(string s) {
+       int left = 0;
+      
+       int right = s.length()-1;
+       while(left < right){
+           if(s[left] == s[right]){
+               left++;
+               right--;
+
+           }
+           else{
+                return isPalindrome(left+1,right,s) || isPalindrome(left,right-1,s);
+           }
+       }
+return true;
+    }
+};
+
+
+***********************************************************************
+# Integer to Roman
+
+
+class Solution {
+public:
+    string intToRoman(int num) {
+        string ones[] = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
+        string tens[] = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        string hundreds[] = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        string thousands[] = {"","M","MM","MMM"}; //because range in lwss than 3000
+        return thousands[num/1000]+hundreds[(num%1000)/100]+tens[(num%100)/10]+ones[num%10];
+    }
+};
+
+
+*************************************************************************
+# Remove all duplicates from a given string
+
+class Solution{
+public:
+	string removeDuplicates(string str) {
+	    // code here
+	    string ans="";
+	    map<char,int> cnt;
+	    for(int i=0;i<str.length();i++){
+	        if(cnt[str[i]] < 1){
+	            ans+=str[i];
+	            cnt[str[i]]++;
+	        }
+	    }
+	    return ans;
+	}
+};
