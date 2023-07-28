@@ -1,0 +1,50 @@
+# Valid Number
+
+class Solution {
+public:
+    bool isNumber(string s) {
+        int n= s.size();
+        int i=0;
+        //leading zero
+        while(i<n && isspace(s[i]))
+        i++;
+
+         if(i<n && (s[i] == '+' || s[i] == '-')) i++;
+
+
+        bool hasDigit = false;
+        while(i<n && isdigit(s[i])){
+            i++;
+            hasDigit = true;
+        }
+
+
+        if(s[i] == '.' && i<n) {
+            i++;
+            while(i<n && isdigit(s[i])){
+                i++;
+                hasDigit = true;
+            }
+        }
+        bool hasExponentValue = false;
+        if(hasDigit && i<n && (s[i] == 'e' || s[i] == 'E')){
+            i++;
+
+            if((s[i] == '+' || s[i] == '-') && i<n)
+            i++;
+
+            while(i<n && isdigit(s[i])){
+            i++;
+            hasExponentValue = true;
+        }
+
+        if(!hasExponentValue) return false;
+        }
+
+        
+
+        while(i<n && isspace(s[i])) i++;
+
+        return i==n && hasDigit;
+    }
+};
