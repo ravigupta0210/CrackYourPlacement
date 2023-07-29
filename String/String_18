@@ -1,0 +1,15 @@
+# Pattern searching
+
+
+class Solution{
+public:	
+	
+	int search(string text, string pat)
+	{
+	    // Your code goes here
+	    int found= -1;
+	    found = text.find(pat);
+	    if(found != -1) return 1;
+	    else return 0;
+	}
+};
