@@ -1,0 +1,49 @@
+# Text Justification
+
+
+class Solution {
+public:
+string spaceJustifier(string str,int maxWidth,int isLast){
+    if(str.length() == maxWidth) return str;
+    int spaceIntoStr = 0;
+
+    for(int i=0;i<str.length();i++)
+   { if(str[i] == ' ') spaceIntoStr++;}
+
+
+    int spaceToBe = maxWidth - str.length();
+    if(spaceIntoStr ==0 || isLast==1){
+        str.insert(str.length(),spaceToBe , ' ');
+        return str;
+    }
+    int eachSlot = spaceToBe/spaceIntoStr ;
+    int leftSpace = spaceToBe % spaceIntoStr;
+
+    for(int i=0;i<str.length();i++){
+        if(str[i] == ' ' && (eachSlot > 0 || leftSpace > 0)){
+            int noOfSpace = eachSlot + ((leftSpace--) > 0 ? 1:0);
+            str.insert(i, noOfSpace,' ');
+            i+=noOfSpace;
+        }
+    }
+    return str;
+}
+    vector<string> fullJustify(vector<string>& word, int maxWidth) {
+        vector<string> result;
+        string output = word[0];
+        for(int i =1;i<word.size();i++){
+            if(output.length()+word[i].length()+1 <=maxWidth )
+            output += " "+word[i];
+
+            else {
+                output = spaceJustifier(output,maxWidth,0);
+                result.push_back(output);
+                output = word[i];
+            }
+
+        }
+        output=spaceJustifier(output,maxWidth,1);
+        result.push_back(output);
+        return result;
+    }
+};

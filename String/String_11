@@ -1,0 +1,19 @@
+# Search Pattern (Rabin-Karp Algorithm)
+
+class Solution
+{
+    public:
+        vector <int> search(string pat, string txt)
+        {
+            //code here.
+            vector<int> ans;
+            for(int i=0;i<txt.length();i++){
+                string temp = txt.substr(i,pat.length());
+                if(temp == pat)
+                ans.push_back(i+1);
+            }
+            if(ans.size() > 0) return ans;
+            else return {-1};
+        }
+     
+};
