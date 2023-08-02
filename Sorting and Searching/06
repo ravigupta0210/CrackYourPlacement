@@ -1,0 +1,26 @@
+# Product array puzzle
+
+class Solution{
+  public:
+    // nums: given vector
+    // return the Product vector P that hold product except self at each index
+    vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
+       
+        //code here     
+        vector<long long int> ans;
+        long long int i=0,j=0,product=1;
+        while(i<n){
+            if(i!=j){
+                product*=nums[j];
+            }
+            j++;
+            if(j==n){
+                ans.push_back(product);
+                product = 1;
+                i++;
+                j=0;
+            }
+        }
+        return ans;
+    }
+};
