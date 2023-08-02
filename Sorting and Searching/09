@@ -1,0 +1,37 @@
+# Allocate minimum number of pages
+
+class Solution 
+{
+    public:
+    bool isPossible(int a[],int m,int n,int mid){
+        int count=1,sum=0;
+        for(int i=0;i<n;i++){
+            sum+=a[i];
+            if(a[i]>mid) return false;
+            if(sum > mid){
+                count++;
+                sum=a[i];
+            }
+        }
+        return m>=count;
+    }
+    //Function to find minimum number of pages.
+    int findPages(int A[], int N, int M) 
+    {
+        //code here
+        if(M>N) return -1;
+        int start=0,sum=0,ans=-1;
+        for(int i=0;i<N;i++)
+        sum+=A[i];
+        int end=sum;
+        while(start <= end){
+            int mid=start+(end-start)/2;
+            if(isPossible(A,M,N,mid)){
+                ans=mid;
+                end=mid-1;
+            }
+            else start=mid+1;
+        }
+        return ans;
+    }
+};
