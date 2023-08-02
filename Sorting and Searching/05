@@ -1,0 +1,33 @@
+# Radix Sort
+
+void countSort(int arr[],int n,int div){
+   
+   vector<int> count(10,0);
+    vector<int> output(n,0);
+   for(int i=0;i<n;i++)
+   count[(arr[i]/div)%10]++;
+   
+   for(int i=1;i<10;i++){
+       count[i] += count[i-1];
+   }
+   
+   for(int i=n-1;i>=0;i--){
+       output[--count[(arr[i]/div)%10]] = arr[i];
+   }
+   for(int i=0;i<n;i++)
+   arr[i] = output[i];
+   
+}
+
+void radixSort(int arr[], int n) 
+{ 
+   // code here
+   int maxi = arr[0];
+   for(int i=0;i<n;i++){
+       maxi=max(maxi,arr[i]);
+   }
+   
+   for(int  i=1;maxi/i > 0;i*=10){
+       countSort(arr,n,i);
+   }
+} 
