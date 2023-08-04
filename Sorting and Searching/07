@@ -1,0 +1,25 @@
+# Equalize an array in minimum operations
+
+class Solution{
+public:
+    int equalizeArray(int n, int k, int A[]){
+        // code here
+        if(n==0 || n==1) return 0;
+        long long steps=0;
+        sort(A,A+n);
+        int mid=0;
+        if(n%2 == 1) mid=n/2;
+        else mid=n/2-1;
+        
+        for(long long i=0;i<n;i++){
+            if(abs(A[i]-A[mid])%k != 0)
+            return -1;
+        }
+        
+        for(long long i=0;i<n;i++){
+            long long diff = abs(A[i]-A[mid]);
+            steps+=(diff/k)%1000000007;
+        }
+        return steps%1000000007;
+    }
+};

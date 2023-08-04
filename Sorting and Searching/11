@@ -1,0 +1,48 @@
+# Minimum number of swaps needed
+
+class Solution{
+public:	
+    int merge(int arr[],int start,int mid,int end){
+        int l = mid-start+1 , r = end-mid;
+        int res=0;
+        int left[l],right[r];
+        for(int i=0;i<l;i++){
+            left[i] = arr[i+start];
+        }
+        for(int i=0;i<r;i++){
+            right[i] = arr[i+mid+1];
+        }
+        
+        
+        int i=0,j=0,k=start;
+        
+        while(i<l && j<r){
+            if(left[i] <= right[j]){
+                arr[k++] = left[i++];
+            }
+            else{
+                arr[k++] = right[j++];
+                res += l-i;
+            }
+        }
+        while(i < l) arr[k++] = left[i++];
+        
+        while(j < r) arr[k++] = right[j++];
+        return res;
+    }
+		int mergeSort(int arr[],int start,int end){
+		    int res = 0;
+		    if(start < end){
+		        int mid = start + (end-start)/2;
+		        res+= mergeSort(arr,start,mid);
+		        res += mergeSort(arr,mid+1,end);
+		        res += merge(arr,start,mid,end);
+		    }
+		    return res;
+		}
+	int countSwaps(int arr[], int n)
+	{
+	    // Your code goes here
+	    return mergeSort(arr,0,n-1);
+	}
+};
