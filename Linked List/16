@@ -1,0 +1,38 @@
+# Partition List
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+      ListNode* left = new ListNode();
+      ListNode* right = new ListNode();
+      ListNode* temp = head;
+      ListNode* templeft = left, *tempright = right;
+      while(temp){
+          if(temp->val < x){
+              ListNode* minus = new ListNode();
+              minus->val = temp->val;
+              left->next = minus;
+              minus->next=NULL;
+              left = minus;
+          }
+          else{
+              ListNode* plus = new ListNode();
+              plus->val = temp->val;
+              right->next = plus;
+              plus->next=NULL;
+              right = plus;
+          }
+          temp=temp->next;
+      }  
+      if(left && right){
+          left->next = tempright->next;
+          return templeft->next;
+      }
+      else if(left){
+          return templeft->next;
+      }
+      else{
+          return tempright->next;
+      }
+    }
+};
