@@ -1,0 +1,25 @@
+# Segregate even and odd nodes in a Link List
+
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+        // code here
+        Node* even = new Node(-1);
+        Node* odd = new Node(-1);
+        Node* evenhead = even , *oddhead = odd;
+        while(head){
+            if(head->data % 2 == 0){
+                even->next = head;
+                even = even->next;
+            }
+            else{
+                odd->next = head;
+                odd=odd->next;
+            }
+            head=head->next;
+        }
+        odd->next = NULL;
+        even->next = oddhead->next;
+        return evenhead->next;
+    }
+};
