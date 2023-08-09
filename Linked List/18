@@ -1,0 +1,19 @@
+# Linked List in Zig-Zag fashion
+
+class Solution
+{
+    public:
+    Node *zigZag(Node* head)
+    {
+     // your code goes here
+     bool isEven = true;
+     Node* ptr= head;
+     while(ptr->next){
+         if((isEven && ptr->data > ptr->next->data) || (!isEven && ptr->data < ptr->next->data))
+         swap(ptr->data,ptr->next->data);
+         isEven = !isEven;
+         ptr=ptr->next;
+     }
+     return head;
+    }
+};

@@ -1,0 +1,19 @@
+# Rearrange linked list in-place
+
+Node *inPlace(Node *root)
+{
+ // your code goes here
+ Node* head = root;
+ while(head->next!=NULL && head->next->next!= NULL){
+     Node* tail = head->next;
+     while(tail->next->next != NULL) tail=tail->next;
+     
+     tail->next->next=head->next;
+     head->next = tail->next;
+     tail->next=NULL;
+     
+     head=head->next->next;
+ }
+ return root;
+ 
+}

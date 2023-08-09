@@ -1,0 +1,31 @@
+# Flattening a Linked List
+
+    Node* merge(Node* head1,Node* head2){
+        Node* ans=new Node(0);
+        Node* temp=ans;
+        while(head1!=NULL && head2!=NULL){
+            if(head1->data < head2->data){
+                temp->bottom = head1;
+                temp=temp->bottom;
+                head1=head1->bottom;
+            }
+            else{
+                temp->bottom = head2;
+                temp=temp->bottom;
+                head2=head2->bottom;
+            }
+        }
+        if(head1)
+        temp->bottom = head1;
+        else
+        temp->bottom = head2;
+        return ans->bottom;
+    }
+Node *flatten(Node *root)
+{
+   // Your code here
+   if(root == NULL || root->next==NULL) return root;
+   root->next = flatten(root->next);
+   root=merge(root,root->next);
+   return root;
+}
