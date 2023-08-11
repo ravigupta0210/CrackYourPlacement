@@ -1,0 +1,21 @@
+# Next Greater Element I
+
+int m = nums1.size(), n = nums2.size();
+        unordered_map<int,int> map;
+        for(int i = 0; i < n; i++)
+            map[nums2[i]] = i;
+        stack<int> s;
+        
+        for(int i = n-1; i >= 0; i--) {
+            while(!s.empty() && s.top() <= nums2[i]) s.pop();
+            int temp = nums2[i];
+            if(s.empty()) nums2[i] = -1;
+            else nums2[i] = s.top();
+            s.push(temp);
+        }
+
+        for(int i = 0; i < m; i++) {
+            int x = nums1[i];
+            nums1[i] = nums2[map[x]];
+        }
+        return nums1;
