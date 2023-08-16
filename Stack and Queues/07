@@ -1,0 +1,27 @@
+# Evaluation of Postfix Expression
+
+class Solution
+{
+    public:
+    //Function to evaluate a postfix expression.
+    int evaluatePostfix(string S)
+    {
+        // Your code here
+        stack<int> s;
+        for(int i=0;i<S.size();++i){
+            if(S[i]<='9' && S[i]>='0')
+            s.push(S[i]-'0');
+            else{
+                int b=s.top();
+                s.pop();
+                int a=s.top();
+                s.pop();
+                if(S[i]=='*') s.push(a*b);
+                else if(S[i]=='/')s.push(a/b);
+                else if(S[i]=='+')s.push(a+b);
+                else if(S[i]=='-')s.push(a-b);
+            }
+        }
+        return s.top();
+    }
+};
