@@ -1,5 +1,6 @@
 # Flatten Nested List Iterator
 
+
 class NestedIterator {
 public:
 vector<int> list;
