@@ -1,0 +1,35 @@
+# Remove All Adjacent Duplicates in String II
+
+class Solution {
+public:
+// string solve(string s,int k){
+//     int count=1;
+//     for(int i=1;i<s.size();i++){
+//         if(s[i] == s[i-1]) count++;
+//         else count=1;
+//         if(count==k){
+//             string temp = s.substr(0,i-count+1)+s.substr(i+1,s.size());
+//             return solve(temp,k);
+//         }
+//     }
+//     return s;
+// }
+    string removeDuplicates(string s, int k) {
+    //    return solve(s,k);
+
+
+
+    string ans;
+    vector<pair<char,int>> v;
+    for(int i=0;i<s.size();i++){
+        if(!v.size() || v.back().first != s[i])
+        v.push_back({s[i],1});
+        else v.back().second++;
+        if(v.back().second == k) v.pop_back();
+    } 
+    for(int i=0;i<v.size();i++)
+    for(int j=0;j<v[i].second;j++)
+    ans.push_back(v[i].first);
+    return ans;
+    }
+};
