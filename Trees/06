@@ -1,0 +1,18 @@
+# Range Sum of BST
+
+
+class Solution {
+public:
+void traversal(TreeNode* root,int low,int high,int &sum){
+    if(root == NULL) return ;
+        traversal(root->left,low,high,sum);
+        if(root->val >= low && root->val <= high) sum+=root->val;
+        traversal(root->right,low,high,sum);
+}
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        if(root == NULL) return NULL;
+        int sum=0;
+        traversal(root,low,high,sum);
+        return sum;
+    }
+};
