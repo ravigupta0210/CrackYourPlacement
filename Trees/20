@@ -1,0 +1,13 @@
+# Check whether BST contains Dead End
+
+
+bool solve(Node* root,int mini,int maxi){
+    if(root==NULL) return false;
+    if(root->data - mini ==1 && maxi-root->data == 1) return true;
+    return solve(root->left,mini,root->data) || solve(root->right,root->data,maxi);
+}
+bool isDeadEnd(Node *root)
+{
+    //Your code here
+    return solve(root,0,INT_MAX);
+}
