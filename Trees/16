@@ -1,0 +1,20 @@
+# Sum of Left Leaves
+
+
+class Solution {
+public:
+void solve(TreeNode* root,int &sum,int &flag){
+    if(root == NULL) return ;
+    if(root->left == NULL && root->right == NULL && flag == 1) sum+=root->val;
+    flag = 1;
+    solve(root->left,sum,flag);
+    flag= 0;
+    solve(root->right,sum,flag);
+}
+    int sumOfLeftLeaves(TreeNode* root) {
+        int sum=0;
+        int flag = 0;
+        solve(root,sum,flag);
+        return sum;
+    }
+};
