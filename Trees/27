@@ -1,0 +1,43 @@
+# Redundant Connection
+
+
+class Solution {
+public:
+int findParent(int n,vector<int> parent){
+    if(n == parent[n]){
+        return n;
+    }
+    return parent[n] = findParent(parent[n],parent);
+}
+bool findUnion(int node1,int node2,vector<int>& parent,vector<int>& rank){
+    int parent1 = findParent(node1,parent);
+    int parent2 = findParent(node2,parent);
+    if(parent1 == parent2) return false;
+    if(rank[parent1] < rank[parent2])
+    parent[parent1] = parent2;
+    else if(rank[parent1] > rank[parent2])
+    parent[parent2] = parent1;
+    else
+    {
+        parent[parent2] = parent1;
+        rank[parent1]++;
+    }
+    return true;
+}
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        int n=edges.size();
+        vector<int> parent(n+1),rank(n+1),ans;
+        for(int i=1;i<=n;i++){
+            parent[i] = i;
+            rank[i] = 0;
+        }
+        for(auto it:edges){
+            if(!findUnion(it[0],it[1],parent,rank)){
+                ans.push_back(it[0]);
+                ans.push_back(it[1]);
+                break;
+            }
+        }
+        return ans;
+    }
+};
