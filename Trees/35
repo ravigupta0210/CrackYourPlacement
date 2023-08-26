@@ -1,0 +1,30 @@
+# Maximum Width of Binary Tree
+
+
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        if(root==NULL) return 0;
+        int ans=1;
+        queue<pair<TreeNode*,long long int>> q;
+        q.push({root,0});
+        while(!q.empty()){
+            int level = q.size();
+            int startIndex = q.front().second;
+            int endIndex = q.back().second;
+            ans = max(ans,endIndex - startIndex +1);
+            for(int i=0;i<level;i++){
+                auto nodeIndexPair = q.front();
+                TreeNode* node = nodeIndexPair.first;
+                int nodeIndex = nodeIndexPair.second - startIndex;
+                q.pop();
+                if(node->left){
+                    q.push({node->left,2LL*nodeIndex+1});
+                }
+                if(node->right)
+                    q.push({node->right,2LL*nodeIndex+2});
+            }
+        }
+        return ans;
+    }
+};
