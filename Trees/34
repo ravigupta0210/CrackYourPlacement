@@ -1,0 +1,25 @@
+# Flatten Binary Tree to Linked List
+
+
+class Solution {
+public:
+TreeNode* solve(TreeNode* curr){
+    curr = curr->left;
+    while(curr->right != NULL){
+        curr=curr->right;
+    }
+    return curr;
+}
+    void flatten(TreeNode* root) {
+        TreeNode* curr = root;
+        while(curr!=NULL){
+            if(curr->left){
+                TreeNode* pred = solve(curr);
+                pred->right = curr->right;
+                curr->right = curr->left;
+                curr->left = NULL;
+            }
+            curr=curr->right;
+        }
+    }
+};
