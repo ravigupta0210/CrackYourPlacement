@@ -1,0 +1,28 @@
+# Populating Next Right Pointers in Each Node
+
+
+class Solution {
+public:
+void setNext(Node* curr,Node* left){
+    while(curr!=NULL){
+        left->next=curr->right;
+        left=left->next;
+        curr=curr->next;
+        if(curr != NULL){
+            left->next = curr->left;
+            left=left->next;
+        }
+    }
+}
+void connectRecursively(Node* curr){
+    if(curr->left == NULL) return ;
+    setNext(curr,curr->left);
+    connectRecursively(curr->left);
+}
+    Node* connect(Node* root) {
+        if(root == NULL) return NULL;
+        connectRecursively(root);
+        return root;
+
+    }
+};
