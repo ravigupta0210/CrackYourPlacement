@@ -1,0 +1,23 @@
+# Preorder to PostOrder
+
+
+class Solution{
+public:
+Node* solve(int pre[],int size,int &i,int mini,int maxi){
+    if(i>=size) return NULL;
+    if(mini > pre[i] || maxi< pre[i]) return NULL;
+    Node* root= newNode(pre[i++]);
+    root->left = solve(pre,size,i,mini,root->data);
+    root->right = solve(pre,size,i,root->data,maxi);
+    return root;
+}
+    //Function that constructs BST from its preorder traversal.
+    Node* post_order(int pre[], int size)
+    {
+        //code here
+        int mini= INT_MIN,maxi=INT_MAX;
+        int i=0;
+        return solve(pre,size,i,mini,maxi);
+        
+    }
+};
