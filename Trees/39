@@ -1,0 +1,25 @@
+# Count BST nodes that lie in a given range
+
+
+class Solution{
+public:
+void solve(Node* root,vector<int> &in){
+    if(root==NULL) return ;
+    solve(root->left,in);
+    in.push_back(root->data);
+    solve(root->right,in);
+}
+    int getCount(Node *root, int l, int h)
+    {
+      // your code goes here   
+      vector<int> in;
+      int ans=0;
+      solve(root,in);
+      for(int i=0;i<in.size();i++)
+      {
+          if(in[i] >= l && in[i] <= h) ans++;
+          
+      }
+      return ans;
+    }
+};
