@@ -1,0 +1,23 @@
+# Binary Tree Cameras
+
+
+class Solution {
+public:
+int total = 0;
+int postorder(TreeNode* root){
+    if(root==NULL) return 3;
+    int left = postorder(root->left);
+    int right = postorder(root->right);
+    if(left==1 || right==1) {
+        total++;
+        return 2;
+    }
+    if(left == 3 && right==3) return 1;
+    if(left == 2 || right == 2) return 3;
+    return 0;
+}
+    int minCameraCover(TreeNode* root) {
+        if(postorder(root) == 1) total++;
+        return total;
+    }
+};
