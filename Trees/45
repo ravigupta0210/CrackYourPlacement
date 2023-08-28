@@ -1,0 +1,25 @@
+# K Sum Paths
+
+
+class Solution{
+  public:
+  int count = 0;
+  void solve(Node* root,int k,unordered_map<int,int> &mp,int prev){
+      if(root == NULL) return ;
+      int curr = prev+root->data;
+      if(mp.find(curr-k)!=mp.end())
+      count+=mp[curr-k];
+      if(curr==k) count++;
+      mp[curr]++;
+      solve(root->left,k,mp,curr);
+      solve(root->right,k,mp,curr);
+      mp[curr]--;
+  }
+    int sumK(Node *root,int k)
+    {
+        // code here 
+        unordered_map<int,int> map;
+        solve(root,k,map,0);
+        return count;
+    }
+};
