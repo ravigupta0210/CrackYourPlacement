@@ -1,0 +1,42 @@
+# Serialize and Deserialize Binary Tree
+
+
+class Codec {
+public:
+
+void BinaryTreeToString(TreeNode* root,string &ser){
+    if(!root){
+        ser+="N ";
+        return ;
+    }
+    ser+=to_string(root->val) + ' ';
+    BinaryTreeToString(root->left,ser);
+    BinaryTreeToString(root->right,ser);
+}
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        string ser = "";
+        BinaryTreeToString(root,ser);
+        return ser;
+    }
+TreeNode* StringToBT(string &data,int &i){
+    if(data[i] == 'N'){
+        i+=2;
+        return NULL;
+    }
+    string temp ="";
+    while(data[i]!=' '){
+        temp+=data[i++];
+    }
+    TreeNode* root = new TreeNode(stoi(temp));
+    i++;
+    root->left = StringToBT(data,i);
+    root->right = StringToBT(data,i);
+    return root;
+}
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        int i=0;
+        return StringToBT(data,i);
+    }
+};
