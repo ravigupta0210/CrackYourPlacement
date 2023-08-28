@@ -1,0 +1,19 @@
+# Construct Binary Search Tree from Preorder Traversal
+
+
+class Solution {
+public:
+TreeNode* solve(vector<int>& preorder, int maxi,int &i){
+    if(i>= preorder.size()) return NULL;
+    if(preorder[i] > maxi) return NULL;
+    TreeNode* node = new TreeNode(preorder[i++]);
+    node->left = solve(preorder,node->val,i);
+    node->right = solve(preorder,maxi,i);
+    return node;
+}
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int i=0;
+        return solve(preorder,INT_MAX,i);
+
+    }
+};
