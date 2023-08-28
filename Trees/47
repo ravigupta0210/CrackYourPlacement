@@ -1,0 +1,21 @@
+# Median of BST
+
+
+void solve(struct Node* root,vector<int> &in){
+    if(root==NULL) return ;
+    solve(root->left,in);
+    in.push_back(root->data);
+    solve(root->right,in);
+}
+float findMedian(struct Node *root)
+{
+      //Code here
+      vector<int> in;
+      solve(root,in);
+      int size = in.size();
+      if(size%2 != 0)
+      return in[size/2];
+      else{
+          return float(in[size/2] + in[(size-1)/2])/2;
+      }
+}
