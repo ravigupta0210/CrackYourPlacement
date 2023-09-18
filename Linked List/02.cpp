@@ -1,4 +1,4 @@
-# Linked List Cycle
+// Linked List Cycle
 
 class Solution {
 public:
