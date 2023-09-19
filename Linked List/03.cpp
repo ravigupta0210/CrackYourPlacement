@@ -1,4 +1,5 @@
-# Convert Binary Number in a Linked List to Integer
+//  Convert Binary Number in a Linked List to Integer
+
 
 class Solution {
 public:
