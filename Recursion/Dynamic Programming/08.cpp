@@ -1,6 +1,7 @@
 // Count derangements
 
 
+
 #include<bits/stdc++.h>
 #define MOD 1000000007
 long long int solve(int n,vector<long long int> &dp){
@@ -32,7 +33,7 @@ long long int solveSO(int n){
     return prev1;
 }
 long long int countDerangements(int n) {
-    // vector<long long int> dp(n+1,-1);
-    // return solve(n,dp);
+    vector<long long int> dp(n+1,-1);
+    return solve(n,dp);
     return solveSO(n);
 }
