@@ -1,4 +1,5 @@
-#Find the Duplicate Number
+// Find the Duplicate Number
+
 
 class Solution {
 public:
