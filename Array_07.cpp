@@ -1,4 +1,5 @@
-# Remove Duplicates from Sorted Array
+// Remove Duplicates from Sorted Array
+
 
 class Solution {
 public:
