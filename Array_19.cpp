@@ -1,4 +1,5 @@
-# Jump Game
+// Jump Game
+
 
 class Solution {
 public:
