@@ -1,4 +1,5 @@
-# Majority Element
+// Majority Element
+
 
 class Solution {
 public:
