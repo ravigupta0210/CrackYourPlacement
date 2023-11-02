@@ -1,4 +1,5 @@
-# Game of Life
+// Game of Life
+
 
 class Solution {
 public:
