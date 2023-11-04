@@ -1,4 +1,5 @@
-# Insert Delete GetRandom O(1) - Duplicates allowed
+// Insert Delete GetRandom O(1) - Duplicates allowed
+
 
 class RandomizedCollection {
 public:
