@@ -1,4 +1,5 @@
-# Generate Parentheses
+// Generate Parentheses
+
 
 class Solution {
 public:
