@@ -1,4 +1,5 @@
-# Simplify Path
+// Simplify Path
+
 
 class Solution {
 public:
