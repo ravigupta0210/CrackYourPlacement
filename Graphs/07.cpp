@@ -1,4 +1,5 @@
-# Detect cycle in a directed graph
+// Detect cycle in a directed graph
+
 
 
 class Solution {
