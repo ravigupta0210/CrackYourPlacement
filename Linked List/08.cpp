@@ -1,4 +1,5 @@
-# Multiply two linked lists
+// Multiply two linked lists
+
 
 long long  multiplyTwoLists (Node* l1, Node* l2)
 {
