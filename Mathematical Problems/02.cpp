@@ -1,4 +1,5 @@
-# Add Binary
+// Add Binary
+
 
 class Solution {
 public:
