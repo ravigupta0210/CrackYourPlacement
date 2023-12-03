@@ -1,4 +1,5 @@
-# Palindrome Number
+//Palindrome Number
+
 
 class Solution {
 public:
