@@ -1,4 +1,5 @@
-# Missing Number
+// Missing Number
+
 
 class Solution {
 public:
