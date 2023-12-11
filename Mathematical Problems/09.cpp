@@ -1,4 +1,5 @@
-# Power of Two
+// Power of Two
+
 
 class Solution {
 public:
