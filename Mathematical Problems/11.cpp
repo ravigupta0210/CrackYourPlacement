@@ -1,4 +1,5 @@
-# Valid Square
+// Valid Square
+
 
 class Solution {
 public:
