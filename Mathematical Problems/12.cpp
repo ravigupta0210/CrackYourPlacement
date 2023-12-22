@@ -1,4 +1,5 @@
-# The kth Factor of n
+// The kth Factor of n
+
 
 class Solution {
 public:
