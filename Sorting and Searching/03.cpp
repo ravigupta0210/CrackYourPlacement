@@ -1,4 +1,5 @@
-# Find Pair Given Difference
+// Find Pair Given Difference
+
 
 bool findPair(int arr[], int size, int n){
     //code
