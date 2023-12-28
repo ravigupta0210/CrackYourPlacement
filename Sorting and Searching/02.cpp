@@ -1,4 +1,5 @@
-# Ceil The Floor
+// Ceil The Floor
+
 
 pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
     // code here
