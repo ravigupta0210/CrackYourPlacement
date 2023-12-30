@@ -119,3 +119,31 @@ int solve4(vector<vector<int>>& grid,int index,int n){
         return grid;
     }
 };
+
+
+// Partition Array According to Given Pivot
+
+
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        vector<int> ans;
+        vector<int> lesser,greater,equal;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i] > pivot)
+            greater.push_back(nums[i]);
+            else if(nums[i]<pivot)
+            lesser.push_back(nums[i]);
+            else
+            equal.push_back(pivot);
+        }
+        for(auto less : lesser)
+        ans.push_back(less);
+        for(auto eq : equal)
+        ans.push_back(eq);
+        for(auto gre : greater)
+        ans.push_back(gre);
+
+        return ans;
+    }
+};
