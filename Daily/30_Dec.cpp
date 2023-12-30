@@ -147,3 +147,16 @@ public:
         return ans;
     }
 };
+
+
+// Sort the Students by Their Kth Score
+
+class Solution {
+public:
+    vector<vector<int>> sortTheStudents(vector<vector<int>>& score, int k) {
+        sort(score.begin(),score.end(),[k](vector<int>&x,vector<int>&y){
+            return x[k]>y[k];
+        });
+        return score;
+    }
+};
