@@ -85,3 +85,29 @@ vector<int> slicing(vector<int>& arr,int X, int Y)
         return ans;
     }
 };
+
+// Convert an Array Into a 2D Array With Conditions
+
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        vector<vector<int>> ans;
+        map<int,int> mp;
+        for(auto i:nums) mp[i]++;
+        int maxi = 0;
+        for(auto k:mp){
+            maxi = max(maxi,k.second);
+        }
+        for(int i=0;i<maxi;i++){
+            vector<int> temp;
+            for(auto k:mp){
+                if(k.second != 0){
+                    temp.push_back(k.first);
+                    mp[k.first] = k.second - 1;
+                }
+            }
+            if(temp.size() != 0) ans.push_back(temp);
+        }
+        return ans;
+    }
+};
