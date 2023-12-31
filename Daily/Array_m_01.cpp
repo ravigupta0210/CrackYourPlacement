@@ -50,3 +50,38 @@ vector<int> refactor(vector<int> p,int key){
         return ans;
     }
 };
+
+
+// Arithmetic Subarrays
+
+class Solution {
+public:
+bool check(vector<int> temp){
+    sort(temp.begin(),temp.end());
+    bool ans = true;
+    for(int i=0;i<temp.size()-2;i++){
+        if(temp[i+1]-temp[i] != temp[i+2]-temp[i+1])
+        ans = false;
+    }
+    return ans;
+}
+vector<int> slicing(vector<int>& arr,int X, int Y)
+{
+    auto start = arr.begin() + X;
+    auto end = arr.begin() + Y + 1;
+    vector<int> result(Y - X + 1);
+    copy(start, end, result.begin());
+    return result;
+}
+    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+        vector<bool> ans;
+        int i=0,j=0;
+        while(i < l.size() && j< r.size()){
+            vector<int> temp = slicing(nums,l[i],r[i]);
+            bool res = check(temp);
+            ans.push_back(res);
+            i++;j++;
+        }
+        return ans;
+    }
+};
