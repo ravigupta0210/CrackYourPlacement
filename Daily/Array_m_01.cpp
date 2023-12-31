@@ -111,3 +111,33 @@ public:
         return ans;
     }
 };
+
+
+// Sort the Matrix Diagonally
+
+
+class Solution {
+public:
+    vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+        int r = mat.size(),c = mat[0].size();
+        int rIndex = 0,cIndex;
+        int n = r+c-1;
+        for(int i=1;i<=n;i++){
+            vector<int> diagonal;
+            if(i<=c)
+            cIndex = c-i;
+            else{
+                rIndex++;
+                cIndex=0;
+            }
+            for(int i=rIndex,j=cIndex;i<r && j<c;i++,j++){
+                diagonal.push_back(mat[i][j]);
+            }
+            sort(diagonal.begin(),diagonal.end());
+            for(int i=rIndex,j=cIndex,k=0;i<r && j<c;i++,j++,k++ ){
+                mat[i][j] = diagonal[k];
+            }
+        }
+        return mat;
+    }
+};
