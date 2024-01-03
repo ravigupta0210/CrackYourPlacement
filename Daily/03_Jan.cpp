@@ -63,3 +63,24 @@ public:
         return s;
     }
 };
+
+
+// Lexicographically Smallest Equivalent String
+
+class Solution {
+public:
+    string smallestEquivalentString(string s1, string s2, string baseStr) {
+        vector<char> v(26);
+        for(char i='a';i<='z';i++) v[i-'a'] = i;
+        for(int k=0;k<4;k++){
+            for(int i=0;i<s1.length();i++){
+                v[s2[i]-'a'] = min(v[s2[i]-'a'],v[s1[i]-'a']);
+                v[s1[i]-'a'] = min(v[s2[i]-'a'],v[s1[i]-'a']);
+            }
+        }
+        for(int i=0;i<baseStr.length();i++){
+            baseStr[i] = v[baseStr[i]-'a'];
+        }
+        return baseStr;
+    }
+};
