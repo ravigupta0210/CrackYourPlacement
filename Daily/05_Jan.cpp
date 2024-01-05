@@ -56,3 +56,19 @@ public:
        return ans;
     }
 };
+
+
+// Find Unique Binary String
+
+
+class Solution {
+public:
+    string findDifferentBinaryString(vector<string>& nums) {
+        string ans;
+        int index = 0;
+        for(auto binary:nums){
+            ans+=to_string('1'-binary[index++]);
+        }
+        return ans;
+    }
+};
