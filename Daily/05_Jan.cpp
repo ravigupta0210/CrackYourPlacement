@@ -21,3 +21,38 @@ public:
         return ans;
     }
 };
+
+
+// Construct Smallest Number From DI String
+
+
+class Solution {
+public:
+    string smallestNumber(string pattern) {
+       string ans = "";
+       int i=0;
+       char ch = '1';
+       stack<char> st;
+       st.push(ch);
+       int n = pattern.size();
+       while(!st.empty() && i< n){
+           ch++;
+           if(pattern[i] == 'I'){
+           while(!st.empty()){
+               ans+=st.top();
+               st.pop();
+           }
+           st.push(ch);
+           }
+           else{
+               st.push(ch);
+           }
+           i++;
+       } 
+       while(!st.empty()){
+           ans+=st.top();
+           st.pop();
+       }
+       return ans;
+    }
+};
