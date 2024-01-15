@@ -43,3 +43,29 @@ public:
         return ans;
     }
 };
+
+
+// Next Permutation
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int n = nums.size()-1;int temp;
+        for(int i=n;i>0;i--){
+            if(nums[i]>nums[i-1]){
+                temp=i;
+                break;
+            }
+        }
+        if(temp==0)
+        sort(nums.begin(),nums.end());
+        else{
+            int swapElement = nums[temp-1];
+            for(int i=temp;i<=n;i++){
+                if(nums[i]-swapElement > 0)
+                swap(nums[i],nums[temp-1]);
+            }
+            sort(nums.begin()+temp,nums.end());
+        }
+    }
+};
