@@ -36,3 +36,22 @@ public:
         return ans;
     }
 };
+
+
+// Merge Sorted Array
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        if(n==0) return ;
+        int j=0;
+        nums1.resize(m+n);
+        for(int i=m+n-1;i>=m;i--){
+            if(nums1[i]==0){
+                nums1[i] = nums2[j];
+                j++;
+            }
+        }
+        sort(nums1.begin(),nums1.end());
+    }
+};
