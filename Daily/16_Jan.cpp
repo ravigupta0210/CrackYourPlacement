@@ -55,3 +55,21 @@ public:
         sort(nums1.begin(),nums1.end());
     }
 };
+
+
+// Find the Duplicate Number
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        for(auto num:nums)
+        mp[num]++;
+        int ans;
+        for(auto map:mp){
+            if(map.second >= 2)
+            ans=map.first;
+        }
+        return ans;
+    }
+};
