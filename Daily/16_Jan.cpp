@@ -73,3 +73,20 @@ public:
         return ans;
     }
 };
+
+
+// Repeat and Missing Number Array
+
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    int first = -1, second = -1;
+    int n= A.size();
+    int freq[n+1]={0};
+    for(auto i:A)
+    freq[i]++;
+    
+    for(int i=0;i<=n;i++){
+        if(freq[i] == 0) second = i;
+        if(freq[i] == 2) first = i;
+    }
+    return {first,second};
+}
