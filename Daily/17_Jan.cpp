@@ -30,3 +30,23 @@ public:
         return pow(x,n);
     }
 };
+
+//  Majority Element
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        for(auto ele:nums)
+        mp[ele]++;
+        
+        int ans;
+        int freq=0;
+        for(auto map:mp){
+            if(map.second > freq)
+            {ans = map.first;
+            freq = map.second;}
+        }
+        return ans;
+    }
+};
