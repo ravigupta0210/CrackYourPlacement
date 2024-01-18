@@ -87,3 +87,24 @@ mp[ans]++;
 }
 return count;
 }
+
+
+// Longest Substring Without Repeating Characters
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_set<char> t;
+        int l=0,r=0,m=0;
+        while(r<s.size()){
+            while(t.find(s[r])!=t.end()){
+                t.erase(s[l]);
+                l++;
+            }
+            t.insert(s[r]);
+            m=max(m,r-l+1);
+            r++;
+        }
+        return m;
+    }
+};
