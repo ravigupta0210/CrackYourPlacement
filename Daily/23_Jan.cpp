@@ -103,3 +103,19 @@ public:
         return ans;
     }
 };
+
+
+// Trapping Rain Water
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int low=0,high=height.size()-1,leftMax=INT_MIN,rightMax=INT_MIN,ans=0;
+        while(low<high){
+            leftMax=max(leftMax,height[low]);
+            rightMax=max(rightMax,height[high]);
+            ans+=(leftMax<rightMax)?leftMax-height[low++]:rightMax-height[high--];
+        }
+        return ans;
+    }
+};
