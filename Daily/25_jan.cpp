@@ -176,3 +176,19 @@ void solve(int start,string s,vector<string> &temp,vector<vector<string>> &ans){
         return ans;
     }
 };
+
+
+// Permutation Sequence
+
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        string str;
+        vector<int> ans;
+        for(int i=0;i<n;i++) ans.push_back(i+1);
+        for(int i=0;i<k-1;i++) next_permutation(ans.begin(),ans.end());
+        for(auto i:ans)
+        str+='0'+i;
+        return str; 
+    }
+};
