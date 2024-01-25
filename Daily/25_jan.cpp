@@ -107,3 +107,32 @@ void solve(vector<int>& candidates, int target,vector<int> temp,set<vector<int>>
         return ans;
     }
 };
+
+
+// Combination Sum II
+
+class Solution {
+public:
+void solve(vector<int>& arr, int target,vector<vector<int>> &ans,vector<int> temp,int index){
+    if(target == 0){
+        ans.push_back(temp);
+        return ;
+    }
+    for(int i=index;i<arr.size();i++){
+        if(arr[i]<=target){
+            temp.push_back(arr[i]);
+            solve(arr,target-arr[i],ans,temp,i+1);
+            temp.pop_back();
+        }
+        else break;
+        while(i< arr.size()-1 && arr[i]==arr[i+1]) i++;
+    }
+}
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        sort(candidates.begin(),candidates.end());
+        vector<int> temp;
+        solve(candidates,target,ans,temp,0);
+        return ans;
+    }
+};
