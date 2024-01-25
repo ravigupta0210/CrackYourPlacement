@@ -77,3 +77,33 @@ void solve(vector<int>& nums,int i,int n,set<vector<int>> &st,vector<int> &temp)
         return ans;
     }
 };
+
+
+// Combination Sum
+
+class Solution {
+public:
+void solve(vector<int>& candidates, int target,vector<int> temp,set<vector<int>> &st){
+    if(target<0)
+    return;
+    if(target==0){
+        sort(temp.begin(),temp.end());
+        st.insert(temp);
+        return ;
+    }
+    for(int i=0;i<candidates.size();i++){
+        temp.push_back(candidates[i]);
+        solve(candidates,target-candidates[i],temp,st);
+        temp.pop_back();
+    }
+}
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        set<vector<int>> st;
+        vector<int> temp;
+        solve(candidates,target,temp,st);
+        for(auto i:st)
+        ans.push_back(i);
+        return ans;
+    }
+};
