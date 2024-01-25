@@ -136,3 +136,43 @@ void solve(vector<int>& arr, int target,vector<vector<int>> &ans,vector<int> tem
         return ans;
     }
 };
+
+
+// Palindrome Partitioning
+
+class Solution {
+public:
+bool valid(string str){
+    int i=0;int j=str.length()-1;
+    bool ans=true;
+    while(i<=j){
+        if(str[i]!=str[j]){
+            ans=false;
+            break;
+        }
+        i++;
+        j--;
+    }
+    return ans;
+}
+void solve(int start,string s,vector<string> &temp,vector<vector<string>> &ans){
+    if(start >= s.length()){
+        ans.push_back(temp);
+        return ;
+    }
+    for(int end=start;end<s.length();end++){
+        string st = s.substr(start,end-start+1);
+        if(valid(st)){
+            temp.push_back(st);
+            solve(end+1,s,temp,ans);
+            temp.pop_back();
+        }
+    }
+}
+    vector<vector<string>> partition(string s) {
+        vector<vector<string>> ans;
+        vector<string> temp;
+        solve(0,s,temp,ans);
+        return ans;
+    }
+};
