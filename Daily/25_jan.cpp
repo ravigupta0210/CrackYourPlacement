@@ -49,3 +49,31 @@ int main()
     return 0;
 }
 // } Driver Code Ends
+
+
+// Subsets II
+
+
+class Solution {
+public:
+void solve(vector<int>& nums,int i,int n,set<vector<int>> &st,vector<int> &temp){
+    if(i>=n){
+        st.insert(temp);
+        return ;
+    }
+    solve(nums,i+1,n,st,temp);
+    temp.push_back(nums[i]);
+    solve(nums,i+1,n,st,temp);
+    temp.pop_back();
+}
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> ans;
+        set<vector<int>> st;
+        vector<int> temp;
+        sort(nums.begin(),nums.end());
+        solve(nums,0,nums.size(),st,temp);
+        for(auto i:st)
+        ans.push_back(i);
+        return ans;
+    }
+};
