@@ -140,3 +140,29 @@ int main() {
     return 0;
 }
 // } Driver Code Ends
+
+
+
+//  Word Break II
+
+#include <bits/stdc++.h> 
+void solve(vector<string> &dictionary,string &s,int index,set<string> &ans,string temp){
+    if(index==s.size()){
+        ans.insert(temp);
+        return ;
+    }
+    for(int i=index;i<s.size();i++){
+        string target = s.substr(index,i-index+1);
+        if(find(dictionary.begin(),dictionary.end(),target)!=dictionary.end())
+        solve(dictionary,s,i+1,ans,temp+target+" ");
+    }
+}
+vector<string> wordBreak(string &s, vector<string> &dictionary)
+{
+    set<string> ans;
+    string temp="";
+    solve(dictionary,s,0,ans,temp);
+    vector<string> res(ans.begin(),ans.end());
+    return res;
+
+}
