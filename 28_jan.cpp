@@ -224,4 +224,37 @@ int main()
 	}
     return 0;
 }
+
+
+// Allocate Books
+
+
+bool possible(vector<int> &a, int n,int b,int mid){
+    int count=1,sum=0;
+    for(int i=0;i<n;i++){
+        sum+=a[i];
+        if(a[i]>mid) return false;
+        if(sum>mid){
+            count++;
+            sum=a[i];
+        }
+    }
+    return b>=count;
+}
+int Solution::books(vector<int> &A, int B) {
+    int start=0,end=0,ans=-1;
+    if(B>A.size()) return ans;
+    for(auto i:A)
+    end+=i;
+    while(start<=end){
+        int mid=(start+end)/2;
+        if(possible(A,A.size(),B,mid)){
+            ans=mid;
+            end=mid-1;
+        }
+        else start=mid+1;
+    }
+    return ans;
+}
+
 // } Driver Code Ends
