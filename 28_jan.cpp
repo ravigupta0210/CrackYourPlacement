@@ -88,3 +88,27 @@ int NthRoot(int n, int m) {
   return -1;
    
 }
+
+
+// Matrix Median
+
+int Solution::findMedian(vector<vector<int> > &A) {
+    int row=A.size(),col=A[0].size();
+    int mini = INT_MAX,maxi=INT_MIN;
+    for(int i=0;i<row;i++){
+        mini=min(mini,A[i][0]);
+        maxi=max(maxi,A[i][col-1]);
+    }
+    int desired = (row*col+1)/2;
+    while(mini<maxi){
+        int mid=(maxi+mini)/2;
+        int place=0;
+        for(int i=0;i<row;i++)
+        place+=upper_bound(A[i].begin(),A[i].end(),mid)-A[i].begin();
+        if(place<desired)
+        mini=mid+1;
+        else maxi=mid;
+        
+    }
+    return mini;
+}
