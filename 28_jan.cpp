@@ -155,3 +155,24 @@ public:
     }
 };
 };
+
+
+// Median of Two Sorted Arrays
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+       vector<int> v;
+       v=nums1;
+       double ans;
+       for(auto i:nums2)
+       v.push_back(i);
+        sort(v.begin(),v.end());
+        int n=v.size();
+        if(n%2==0){
+            ans=(v[n/2]+v[(n-1)/2])/2.0;
+        }
+        else ans=v[n/2];
+        return ans;
+    }
+};
