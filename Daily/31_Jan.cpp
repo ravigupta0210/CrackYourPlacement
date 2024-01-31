@@ -143,3 +143,28 @@ public:
  * int param_3 = obj->top();
  * bool param_4 = obj->empty();
  */
+
+
+
+// Valid Parentheses
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        for(int i=0;i<s.length();i++){
+            char ch=s[i];
+            if(ch=='(' || ch=='{' || ch=='[')
+            st.push(ch);
+            else if(st.size()>0 && st.top() == '(' && ch==')')
+            st.pop();
+            else if(st.size()>0 && st.top() == '[' && ch==']')
+            st.pop();
+            else if(st.size()>0 && st.top() == '{' && ch=='}')
+            st.pop();
+            else return false;
+        }
+        if(!st.empty()) return false;
+        else return true;
+    }
+};
