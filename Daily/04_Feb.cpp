@@ -39,3 +39,35 @@ int findCelebrity(int n) {
 	 if(zero!=n || ones!=n-1) return -1;
 	 else return ans;
 }
+
+
+// Maximum of minimum for every window size
+
+
+#include <bits/stdc++.h> 
+vector<int> maxMinWindow(vector<int> arr, int n) {
+    vector<int> left(n,0), right(n,0);
+        stack<int> s;
+        for(int i=0;i<n;i++){
+            while(!s.empty() && arr[s.top()] >= arr[i]) s.pop();
+            if(s.empty()) left[i] = -1;
+            else left[i] = s.top();
+            s.push(i);
+        }
+        while(!s.empty()) s.pop(); 
+        for(int i=n-1;i>=0;i--){
+            while(!s.empty() && arr[s.top()] >= arr[i]) s.pop();
+            if(s.empty()) right[i] = n;
+            else right[i] = s.top();
+            s.push(i);
+        }
+        vector<int> ans(n,INT_MIN);
+        for(int i=0;i<n;i++){
+            int winSize = right[i]-left[i]-2;
+            ans[winSize] = max(ans[winSize],arr[i]);
+        }
+        for(int i=n-2;i>=0;i--){
+            ans[i] = max(ans[i],ans[i+1]);
+        }
+        return ans;
+}
