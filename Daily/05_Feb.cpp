@@ -1,0 +1,26 @@
+// Reverse Words in a String
+
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> st;
+        string temp="",ans="";
+        int i=0;
+        while(i<s.length()){
+            if(s[i]==' ') temp="";
+            while(s[i]!=' ' && i<s.length()){
+                temp+=s[i];
+                i++;
+            }
+            if(temp != "") st.push_back(temp);
+            temp="";
+            i++;
+        }
+        for(int i=st.size()-1;i>=0;i--){
+            ans+=st[i];
+            if(i!=0) ans+=' ';
+        }
+        return ans;
+    }
+};
