@@ -78,3 +78,44 @@ public:
         return ans;
     }
 };
+
+
+
+// String to Integer (atoi)
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        int i=0,n=s.length();
+        bool flag = false;
+        long long ans=0;
+        while(s[i]==' ' && i<n){
+            i++;
+        }
+        if(s[i]=='+')
+        i++;
+        else if(s[i]=='-'){
+            flag=true;
+            i++;
+        }
+        while(i<n){
+            char ch=s[i];
+            if(ch>='0' && ch<='9'){
+                if(ans > LLONG_MAX/10 || (ans==LLONG_MAX/10 && (ch-'0') > LLONG_MAX%10))
+                return (flag) ? INT_MIN:INT_MAX;
+            
+            ans=ans*10+(ch-'0');}
+            else break;
+            i++;
+        }
+        if(flag){
+            ans=-ans;
+            if(ans<INT_MIN) return INT_MIN;
+        }
+        else {
+            if(ans>INT_MAX) return INT_MAX;
+        }
+        return ans;
+    }
+};
+
