@@ -119,3 +119,26 @@ public:
     }
 };
 
+
+
+// Longest Common Prefix
+
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& str) {
+        string ans=str[0];
+        int n=str.size();
+        for(int i=0;i<n;i++){
+            string temp="";
+            string temp2=str[i];
+            for(int j=0;j<ans.length();j++){
+                if(ans[j]==temp2[j])
+                temp+=ans[j];
+                else break;
+            }
+            ans=temp;
+        }
+        return ans;
+    }
+};
