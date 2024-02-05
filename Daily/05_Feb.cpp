@@ -24,3 +24,36 @@ public:
         return ans;
     }
 };
+
+
+// Longest Palindromic Substring
+
+
+class Solution {
+public:
+bool solve(string &s,int i,int j){
+    while(i<j){
+        if(s[i]!=s[j])
+        return false;
+        i++;j--;
+    }
+    return true;
+}
+    string longestPalindrome(string s) {
+        string ans;
+        int n=s.length();
+        int maxi=1;
+        ans.push_back(s[0]);
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                if(solve(s,i,j)){
+                    if(j-i+1 > maxi){
+                        maxi=j-i+1;
+                        ans=s.substr(i,maxi);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
