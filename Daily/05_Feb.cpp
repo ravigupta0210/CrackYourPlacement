@@ -142,3 +142,22 @@ public:
         return ans;
     }
 };
+
+
+// Repeated String Match
+
+
+class Solution {
+public:
+    int repeatedStringMatch(string a, string b) {
+        int n=b.size()/a.size();
+        string s=a;
+        int ans=1;
+        for(int i=0;i<=n+1;i++){
+            if(s.find(b)!=string::npos) return ans;
+            ans++;
+            s+=a;
+        }
+        return -1;
+    }
+};
