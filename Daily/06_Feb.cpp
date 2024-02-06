@@ -53,3 +53,36 @@ public:
 
     }
 };
+
+
+
+// Count and Say
+
+
+class Solution {
+public:
+string solve(string s){
+    int n=s.length();
+    int i=0,j=0,count=0;
+    string ans="";
+    while(i<n){
+        j=i;
+        count=1;
+        while(i<n && s[i]==s[i+1]){
+            count++;
+            i++;
+        }
+        ans+=(count+'0');
+        ans+=s[j];
+        i++;
+    }
+    return ans;
+}
+    string countAndSay(int n) {
+       string s="1";
+       n--;
+       while(n--)
+       s=solve(s);
+       return s;
+    }
+};
