@@ -643,3 +643,39 @@ public:
         return ans;
     }
 };
+
+
+
+// Path to Given Node
+
+
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ 
+vector<int> Solution::solve(TreeNode* root, int B) {
+    queue<pair<TreeNode*,vector<int>>> q;
+    vector<int> temp;
+    q.push({root,temp});
+    while(!q.empty()){
+        auto front=q.front();
+        TreeNode* frontNode=front.first;
+        vector<int> temp=front.second;
+        temp.push_back(frontNode->val);
+        if(frontNode->val==B)
+        return temp;
+        q.pop();
+        if(frontNode->left)
+        q.push({frontNode->left,temp});
+        if(frontNode->right)
+        q.push({frontNode->right,temp});
+        
+    }
+    return {};
+}
