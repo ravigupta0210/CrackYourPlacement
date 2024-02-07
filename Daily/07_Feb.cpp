@@ -546,3 +546,52 @@ int main() {
     return 0;
 }
 // } Driver Code Ends
+
+
+
+//  Tree Traversals
+
+
+/*
+    Following is Binary Tree Node structure:
+    class TreeNode
+    {
+    public:
+        int data;
+        TreeNode *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(int x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
+    };
+*/
+void solvein(TreeNode* root,vector<int> &ans){
+    if(root==NULL) return ;
+    solvein(root->left, ans);
+    ans.push_back(root->data);
+    solvein(root->right,ans);
+}
+void solvepre(TreeNode* root,vector<int> &ans){
+    if(root==NULL) return ;
+    ans.push_back(root->data);
+    solvepre(root->left, ans);
+    
+    solvepre(root->right,ans);
+}
+void solvepost(TreeNode* root,vector<int> &ans){
+    if(root==NULL) return ;
+    solvepost(root->left, ans);
+    
+    solvepost(root->right,ans);
+    ans.push_back(root->data);
+}
+vector<vector<int>> getTreeTraversal(TreeNode *root){
+    vector<vector<int>> ans;
+    vector<int> in,pre,post;
+    solvein(root,in);
+    solvepre(root,pre);
+    solvepost(root,post);
+    ans.push_back(in);
+    ans.push_back(pre);
+    ans.push_back(post);
+    return ans;
+}
