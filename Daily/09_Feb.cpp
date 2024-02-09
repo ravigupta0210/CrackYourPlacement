@@ -66,3 +66,41 @@ int start,int end,int &index,unordered_map<int,int> &mp, int n){
 
     }
 };
+
+
+//  Construct Binary Tree from Inorder and Postorder Traversal
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+TreeNode* solve(vector<int>& inorder, vector<int>& postorder,int start,int end,int &index, int n,
+unordered_map<int,int> &mp){
+    if(index<0 || start>end)
+    return NULL;
+    int ele=postorder[index--];
+    TreeNode* root=new TreeNode(ele);
+    int pos=mp[ele];
+    root->right=solve(inorder,postorder,pos+1,end,index,n,mp);
+    root->left=solve(inorder,postorder,start,pos-1,index,n,mp);
+    return root;
+}
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n=postorder.size();
+        int index=n-1;
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++)
+        mp[inorder[i]]=i;
+        return solve(inorder,postorder,0,n-1,index,n,mp);
+    }
+};
