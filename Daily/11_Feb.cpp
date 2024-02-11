@@ -345,3 +345,39 @@ void pushAll(TreeNode* root){
  * int param_1 = obj->next();
  * bool param_2 = obj->hasNext();
  */
+
+
+
+// Maximum Sum BST in Binary Tree
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+int answer = INT_MIN;
+vector<int> solve(TreeNode* root){
+    if(root==NULL) return {INT_MAX,INT_MIN,0};
+    vector<int> left=solve(root->left);
+    vector<int> right=solve(root->right);
+    int value=root->val;
+    if(!(value>left[1] && value<right[0])) return {INT_MIN,INT_MAX,0};
+    answer = max(answer,left[2]+right[2]+root->val);
+    return {min(root->val,left[0]),max(root->val,right[1]),left[2]+right[2]+root->val};
+}
+    int maxSumBST(TreeNode* root) {
+        //0,1,2 --> min,max,sum
+        vector<int> ans=solve(root);
+        if(answer<0) return 0;
+        else return answer;
+    }
+};
