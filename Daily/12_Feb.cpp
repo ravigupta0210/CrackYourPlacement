@@ -152,3 +152,30 @@ public:
         return maxi.top();
     }
 };
+
+
+
+// Flood Fill
+
+
+class Solution {
+public:
+int row[4]={-1,1,0,0};
+int col[4]={0,0,-1,1};
+void dfs(vector<vector<int>>& image, int sr, int sc, int color,int incolor,vector<vector<int>> &ans){
+    ans[sr][sc]=color;
+    int n=image.size(),m=image[0].size();
+    
+    for(int i=0;i<4;i++){
+        int newx=sr+row[i],newy=sc+col[i];
+        if(newx>=0 && newx<n && newy>=0 && newy<m && image[newx][newy]==incolor && ans[newx][newy]!=color)
+        dfs(image,newx,newy,color,incolor,ans);
+    }
+}
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        vector<vector<int>> ans=image;
+        int incolor = image[sr][sc];
+        dfs(image,sr,sc,color,incolor,ans);
+        return ans;
+    }
+};
