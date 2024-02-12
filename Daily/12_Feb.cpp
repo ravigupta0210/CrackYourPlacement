@@ -108,3 +108,29 @@ priority_queue<int,vector<int>,greater<int>> mini;
  * KthLargest* obj = new KthLargest(k, nums);
  * int param_1 = obj->add(val);
  */
+
+
+// Distinct Numbers in Window
+
+vector<int> Solution::dNums(vector<int> &A, int B) {
+    vector<int> ans;
+    unordered_map<int,int> mp;
+    queue<int> q;
+    if(B>A.size())
+    return ans;
+    for(int i=0;i<B;i++){
+        q.push(A[i]);
+        mp[A[i]]++;
+    }
+    ans.push_back(mp.size());
+    for(int i=B;i<A.size();i++){
+        int frontElement = q.front();
+        q.pop();
+        if(mp[frontElement]>1) mp[frontElement]--;
+        else mp.erase(frontElement);
+        q.push(A[i]);
+        mp[A[i]]++;
+        ans.push_back(mp.size());
+    }
+    return ans;
+}
