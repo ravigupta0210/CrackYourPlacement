@@ -134,3 +134,21 @@ vector<int> Solution::dNums(vector<int> &A, int B) {
     }
     return ans;
 }
+
+
+// Kth Largest Element in an Array
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int> maxi;
+        for(auto i:nums)
+        maxi.push(i);
+
+        while(k>1){
+            k--;
+            maxi.pop();
+        }
+        return maxi.top();
+    }
+};
