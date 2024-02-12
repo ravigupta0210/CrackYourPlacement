@@ -80,3 +80,31 @@ priority_queue<int,vector<int>,greater<int>> right;
  * obj->addNum(num);
  * double param_2 = obj->findMedian();
  */
+
+
+// Kth Largest Element in a Stream
+
+
+class KthLargest {
+public:
+int n;
+priority_queue<int,vector<int>,greater<int>> mini;
+    KthLargest(int k, vector<int>& nums) {
+        n=k;
+        for(auto i:nums)
+        mini.push(i);
+    }
+    
+    int add(int val) {
+        mini.push(val);
+        while(mini.size()>n)
+        mini.pop();
+        return mini.top();
+    }
+};
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * KthLargest* obj = new KthLargest(k, nums);
+ * int param_1 = obj->add(val);
+ */
