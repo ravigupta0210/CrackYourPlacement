@@ -55,3 +55,44 @@ string cycleDetection (vector<vector<int>>& edges, int n, int m)
     }
     return "No";
 }
+
+
+//  Detect Cycle In A Directed Graph
+
+
+
+#include <bits/stdc++.h> 
+
+int detectCycleInDirectedGraph(int v, vector < pair < int, int >> & edges) {
+  unordered_map<int,list<int>> adj;
+    for(int i=0;i<edges.size();i++){
+        int u=edges[i].first-1;
+        int v=edges[i].second-1;
+        adj[u].push_back(v);
+    }
+    queue<int> q;
+    vector<int> indegree(v);
+
+    for(auto i:adj){
+        for(auto j:i.second){
+            indegree[j]++;
+        }
+    }
+
+    for(int i=0;i<v;i++){
+        if(indegree[i]==0)
+        q.push(i);
+    }
+    int count=0;
+    while(!q.empty()){
+        int front=q.front();
+        q.pop();
+        count++;
+        for(auto i:adj[front]){
+            indegree[i]--;
+            if(indegree[i]==0)
+            q.push(i);
+        }
+    }
+    return !(count==v);
+}
