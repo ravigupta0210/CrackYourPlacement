@@ -1,7 +1,6 @@
 //  Cycle Detection In Undirected Graph
 
 
-
 #include<bits/stdc++.h>
 bool bfs(int node,unordered_map<int,bool> &visited,unordered_map<int,int> &parent
 ,unordered_map<int,list<int>> &adj){
